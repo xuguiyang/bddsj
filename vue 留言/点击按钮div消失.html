@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+    .box{
+        width: 100px;
+        height: 100px;
+        background: aqua;
+    }
+    </style>
+    <script>
+        window.onload=function(){ 
+            var c=new Vue({
+                el:'#app',
+                data:{
+                    mes:'你好',
+                    arr:['苹果','香蕉','梨','桃'],
+                    json:{a:'apple',b:'banana'},
+                    a:true
+                },
+              methods:{
+                  show:function(){
+                     
+                          this.arr.push('荔枝')
+                   
+                  }
+                 
+              }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="app">
+     
+      <button v-on:click='a=false'>tijiao </button>
+        <div class="box" v-show='a'></div>
+       </div>
+    </div>
+    
+</body>
+</html>

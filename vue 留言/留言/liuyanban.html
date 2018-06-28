@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .styleObject {
+            list-style: none;
+            padding-right: 10px 0;
+        }
+
+        .styleObjectLi {
+            padding: 10px;
+        }
+
+        .styleObjectInput {
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .styleObjectText {
+            width: 200px;
+            height: 100px;
+            line-height: 20px;
+            vertical-align: top;
+        }
+
+        .btn {
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+
+        .messageTitle {
+            font-size: 14px;
+            padding: 6px 0 4px 10px;
+            background-color: #ddd;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            line-height: 24px;
+        }
+
+        .messageContent {
+            font-size: 14px;
+            padding: 6px 0 4px 10px;
+            background-color: #ddd;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            line-height: 24px;
+        }
+
+        .itemDelete {
+            float: left;
+        }
+
+        .itemContent {
+            padding: 0 10px 10px;
+            text-indent: 28px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul  class="styleObject">
+            <li  class="styleObjectLi">
+                {{name}}:
+                <input type='text'  class="styleObjectInput" v-model="name1">
+            </li>
+            <li class="styleObjectLi">
+                {{content}}:
+                <textarea type='text' class="styleObjectText" v-model="content1"> </textarea>
+            </li>
+            <li>
+                <input type="button" value="提交" @click='submit' class="btn">
+            </li>
+        </ul>
+        <div>
+            <h3  class="messageTitle">{{messagrAccording}}</h3>
+            <ul v-for='item in myArr' style='list-style: none'>
+                <li>
+                    <h3 class="messageContent">{{(item).name1}}</h3>
+                    <p  class="itemContent">
+                        {{(item).content}}
+                        <a href="#" @click='deletel(index)'  class="itemDelete">删除</a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '姓名',
+                content: '内容',
+                messagrAccording: '显示留言',
+                v1: '',
+                v2: '',
+                myArr: [],
+                name1: '',
+                content1: '',
+            },
+        methods: {
+                submit: function () {
+                    if (this.name1 == '' || this.content1 == '') {
+                        return null
+                    }
+                    this.myArr.unshift({
+                        name1: this.name1,
+                        content1: this.content1
+                    })
+                    this.name1 = ""
+                    this.content1 = ""
+                },
+                deletel: function (n) {
+                    
+                    this.myArr.splice(n, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
